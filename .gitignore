@@ -1,0 +1,38 @@
+# Yocto build output
+build/
+
+# Downloaded sources
+downloads/
+sstate-cache/
+tmp/
+layers/
+poky/
+layers/
+poky/
+meta-lts-mixins/
+meta-raspberrypi/
+meta-swupdate/
+
+# Shared state and intermediate files
+*.lock
+*.log
+*.pyc
+*.swp
+*.wafpickle*
+*.bak
+*.tmp
+
+# BitBake history and cache
+cache/
+bitbake-cookerdaemon.log
+bitbake-cookerdaemon.*
+*.run
+
+# Editor & IDE clutter
+*.vscode/
+*.idea/
+*.DS_Store
+*~
+
+# Git-specific
+*.orig

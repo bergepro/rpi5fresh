@@ -1,0 +1,74 @@
+header:
+  version: 10
+
+machine: raspberrypi5
+distro: poky
+target:
+  - core-image-full-cmdline
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/git/poky
+    path: poky
+    branch: master
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+  meta-raspberrypi:
+    url: https://github.com/raspberrypi/meta-raspberrypi
+    path: meta-raspberrypi
+    branch: master
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    path: layers/meta-openembedded
+    branch: master
+    layers:
+      meta-oe:
+      meta-python:
+      meta-networking:
+      meta-perl:
+
+  meta-swupdate:
+    url: https://github.com/sbabic/meta-swupdate
+    branch: master
+
+
+bblayers_conf_header:
+  standard: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+
+local_conf_header:
+  base: |
+    CONF_VERSION = "2"
+    SDKMACHINE = "x86_64"
+    USER_CLASSES = "buildstats"
+    PATCHRESOLVE = "noop"
+    LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"
+  systemd: |
+    DISTRO_FEATURES:append = " systemd usrmerge"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+  custom: |
+    hostname_pn-base-files = "bergerpi"
+
+    CORE_IMAGE_EXTRA_INSTALL += " \
+      openssh openssh-sftp-server \
+      avahi-daemon dhcpcd \
+      libgcc vim htop swupdate swupdate-www \
+    "
+
+    RPI_EXTRA_CONFIG:append = "\n\
+    enable_uart=1\n\
+    enable_rp1_uart=1\n\
+    pciex4_reset=0\n\
+    kernel=u-boot.bin\n\
+    "
+    PACKAGE_CLASSES ?= "package_ipk"
+    RPI_USE_U_BOOT = "1"
+    ENABLE_UART = "1"
+    CMDLINE:raspberrypi5 = "earlycon=pl011,0x1c00030000,115200n8 console=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait rw"
+    DISABLE_RPI_BOOT_LOGO = "1"
