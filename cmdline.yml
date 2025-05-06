@@ -35,4 +35,4 @@ local_conf_header:
     UBOOT_MACHINE:raspberrypi5 = "rpi_arm64_defconfig"
     SERIAL_CONSOLES = "115200;ttyAMA0"
     EXTRA_IMAGE_FEATURES += "debug-tweaks"
-    IMAGE_INSTALL:append = " rpi5-boot-script rpi-ab-update"
+    IMAGE_INSTALL:append = " openssh rpi5-boot-script rpi-ab-update"
