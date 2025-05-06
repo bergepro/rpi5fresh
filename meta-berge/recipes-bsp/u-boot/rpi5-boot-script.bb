@@ -23,4 +23,9 @@ do_install() {
     install -m 0644 boot-ab.scr ${D}${datadir}/boot-script/
 }
 
+do_deploy() {
+    install -Dm0644 boot-ab.scr ${DEPLOYDIR}/boot-ab.scr
+}
+addtask deploy after do_compile before do_build
+
 FILES:${PN} = "${datadir}/boot-script"

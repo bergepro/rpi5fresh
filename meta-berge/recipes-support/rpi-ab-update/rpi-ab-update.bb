@@ -9,4 +9,9 @@ do_install() {
     install -Dm0755 ${WORKDIR}/update.sh ${D}${sbindir}/update.sh
 }
 
+do_deploy() {
+    install -Dm0755 ${WORKDIR}/update.sh ${DEPLOYDIR}/update.sh
+}
+addtask deploy after do_compile before do_build
+
 FILES:${PN} += "${sbindir}/update.sh"
