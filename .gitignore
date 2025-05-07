@@ -12,7 +12,7 @@ poky/
 meta-lts-mixins/
 meta-raspberrypi/
 meta-swupdate/
-
+meta-swupdate-boards/
 # Shared state and intermediate files
 *.lock
 *.log

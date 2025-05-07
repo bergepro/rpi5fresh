@@ -4,8 +4,7 @@ header:
 machine: raspberrypi5
 distro: poky
 target:
-  - core-image-full-cmdline
-  - swupdate-image
+  - update-image
 repos:
   poky:
     url: https://git.yoctoproject.org/git/poky
@@ -36,25 +35,23 @@ repos:
   meta-swupdate:
     url: https://github.com/sbabic/meta-swupdate
     branch: scarthgap
-
+  meta-swupdate-boards:
+    url: https://github.com/sbabic/meta-swupdate-boards
+    branch: scarthgap
   meta-berge:
     path: meta-berge
 
 local_conf_header:
   custom: |
     RPI_USE_U_BOOT = "1"
-    ENABLE_UART = "1"
     DISABLE_RPI_BOOT_LOGO = "1"
+    ENABLE_UART = "1"
     UBOOT_MACHINE:raspberrypi5 = "rpi_arm64_defconfig"
     SERIAL_CONSOLES = "115200;ttyAMA0"
     EXTRA_IMAGE_FEATURES += "debug-tweaks"
-    IMAGE_INSTALL:append = " openssh openssh-sftp-server avahi-daemon dhcpcd libgcc vim htop rpi5-boot-script rpi-ab-update swupdate swupdate-www"
-    SWUPDATE_CLASSES = "swupdate"
-    SWUPDATE_WEBSERVER = "1"
-    SWUPDATE_REST = "0"
-    SWUPDATE_FEATURES:append = " libconfig"
-    IMAGE_NAME_SUFFIX = ""
-    IMAGE_LINK_NAME = "${PN}-${MACHINE}"
-    IMAGE_FSTYPES:remove = "tar.bz2"
-    IMAGE_FSTYPES:append = " wic.bz2 squashfs"
+    IMAGE_INSTALL:append = " openssh openssh-sftp-server avahi-daemon dhcpcd libgcc vim htop swupdate swupdate-www"
 
+    DISTRO_FEATURES:append = " systemd usrmerge"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    IMAGE_FSTYPES:append = " ext4.gz wic.bz2"
+    WKS_FILE = "ts-raspberrypi.wks"
