@@ -1,0 +1,13 @@
+[Unit]
+Description=SWUpdate daemon (A/B slot logic)
+Documentation=https://sbabic.github.io/swupdate/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/swupdate-ab.sh
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
