@@ -54,3 +54,4 @@ local_conf_header:
     VIRTUAL-RUNTIME_init_manager = "systemd"
     IMAGE_FSTYPES:append = " ext4.gz wic.bz2"
     WKS_FILE = "ts-raspberrypi.wks"
+    PACKAGECONFIG:pn-openssh = "systemd-sshd-service-mode"
