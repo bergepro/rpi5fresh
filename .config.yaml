@@ -49,9 +49,9 @@ local_conf_header:
     UBOOT_MACHINE:raspberrypi5 = "rpi_arm64_defconfig"
     SERIAL_CONSOLES = "115200;ttyAMA0"
     EXTRA_IMAGE_FEATURES += "debug-tweaks"
-    IMAGE_INSTALL:append = " openssh openssh-sftp-server avahi-daemon dhcpcd libgcc vim htop swupdate swupdate-www etc-overlay "
-
+    IMAGE_INSTALL:append = " openssh openssh-sftp-server avahi-daemon libgcc vim htop swupdate swupdate-www etc-overlay "
     DISTRO_FEATURES:append = " systemd usrmerge"
     VIRTUAL-RUNTIME_init_manager = "systemd"
     IMAGE_FSTYPES:append = " ext4.gz wic.bz2"
     WKS_FILE = "ts-raspberrypi.wks"
+    PACKAGECONFIG:pn-openssh = "systemd-sshd-service-mode"
