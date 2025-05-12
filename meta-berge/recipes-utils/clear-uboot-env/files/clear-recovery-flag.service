@@ -1,0 +1,11 @@
+[Unit]
+Description=Clear U-Boot recovery_success flag
+After=multi-user.target
+ConditionPathExists=/usr/bin/fw_printenv
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/clear-recovery-flag.sh
+
+[Install]
+WantedBy=multi-user.target
