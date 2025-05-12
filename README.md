@@ -51,7 +51,7 @@ This project demonstrates a **robust software update and recovery mechanism** fo
 | p1        | Boot + U-Boot        | FAT32/ext4 | `/boot`      |
 | p2        | Rootfs Slot A        | ext4       | `/` (active) |
 | p3        | Rootfs Slot B        | ext4       | (inactive)   |
-| p4        | Recovery (read-only) | ext4       | `/media`     |
+| p4        | Recovery             | ext4       | `/media`     |
 
 ---
 
