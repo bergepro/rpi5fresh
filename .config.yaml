@@ -53,5 +53,6 @@ local_conf_header:
     DISTRO_FEATURES:append = " systemd usrmerge"
     VIRTUAL-RUNTIME_init_manager = "systemd"
     IMAGE_FSTYPES:append = " ext4.gz wic.bz2"
+    IMAGE_FSTYPES += "squashfs"
     WKS_FILE = "ts-raspberrypi.wks"
     PACKAGECONFIG:pn-openssh = "systemd-sshd-service-mode"
